@@ -18,13 +18,38 @@
 <center>
     <h3 class = "btn btn-warning" style = "width: 100%;">
         <p style = "float: left; border: 1px solid white; color: white; font-size: 23px; padding: 5px;">AI Ping Pong</p>
-        <p style = "float: right; border: 1px solid white; color: black; font-size: 23px; padding: 5px;">Instructions</p>
+        <p style = "float: right; border: 1px solid white; color: black; font-size: 23px; padding: 5px;" data-toggle = "modal" data-target = "#myModal">Instructions</p>
         <p class = "btn btn-danger" style = "float: right; font-size: 23px; margin-right: 50px;">Status: <span style = "font-size: 23px;" id = "status_display">Ready</span></p>
     </h3>
     <br><br>
-    <button class = "btn btn-success" style = "font-size: 23px; color: black;">Start</button>
+    <button onclick = "start()" class = "btn btn-success" style = "font-size: 23px; color: black;">Start</button>
     <br><br>
-    <div id = "canvas" style = "border: 5px solid white; border-radius: 25px;"></div>
+    <div id = "canvas" style = "border: 5px solid white; border-radius: 25px; width: 80%;"></div>
+    <div id = "footer" style = "width: 100%; line-height: 2; padding: 5px; position: fixed; bottom: 0; text-align: center; font-size: 23px; background-color: white;">Sourcecode: Prashanth Shukla || Edited by: A student</div>
+    <br><br>
+    <button onclick = "restart()" class = "btn btn-info" style = "font-size: 23px; color: black;">Restart</button>
+    
+    <div id = "myModal" class = "modal fade">
+        <div class = "modal-dialog" style = "width: 90%;">
+          <div class = "modal-content">
+            <div class = "modal-header">
+              <button class = "close" data-dismiss = "modal">&times;</button>
+              <h4>Instructions</h4>
+            </div>
+    
+            <div class = "modal-body">
+              <ol style = "font-size: 23px; line-height:180%; list-style-type: none;">
+                  <li>First, keep your laptop screen straight</li>
+                  <li>Next, move yourself approximately 3-4 feet away from the laptop</li>
+                  <li>Now, move your right wrist in an ascending and decending manner. A red dot should appear on your right wrist</li>
+                  <li>If so, press the play button, and again move yourself 3-4 feet away from laptop</li>
+                  <li>The red paddel is your paddel, which should move as per the movement of your right wrist</li>
+                  <li>Lastly, Have Fun!</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
 </center>
         <script src="main.js"></script>
     </body>

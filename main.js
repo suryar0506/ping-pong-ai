@@ -54,7 +54,7 @@ function getPoses(results){
 
 function startGame(){
   game_status = "start";
-  document.getElementById("status_display") = "Game is Loaded";
+  document.getElementById("status_display").innerHTML = "Game is Loaded";
 }
 
 function draw(){

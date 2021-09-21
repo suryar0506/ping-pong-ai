@@ -24,6 +24,13 @@ var rightWristX = "";
 var rightWristY = "";
 var rightWrist_confidence = "";
 var game_status = "";
+var paddle_hits_ball = "";
+var paddle_misses_ball = "";
+
+function preload(){
+  paddle_hits_ball = loadSound('ball_touch_paddel.wav');
+  paddle_misses_ball = loadSound('missed.wav');
+}
 
 function setup(){
   canvas = createCanvas(700,600);
@@ -45,7 +52,7 @@ function getPoses(results){
   if(results.length > 0){
     console.log(results);
     rightWristX = results[0].pose.rightWrist.x;
-    rightWristY = results[0].pose.rightWrist.y;
+    rightWristY = floor(results[0].pose.rightWrist.y);
     rightWrist_confidence = results[0].pose.rightWrist.confidence;
     console.log("Right Wrist X = " + rightWristX + " Right Wrist Y = " + rightWristY + "Confidence of Right Wrist: " + rightWrist_confidence);
   }
@@ -55,6 +62,12 @@ function getPoses(results){
 function startGame(){
   game_status = "start";
   document.getElementById("status_display").innerHTML = "Game is Loaded";
+}
+
+function restart(){
+ pcscore = 0;
+ playerscore = 0;
+ loop();
 }
 
 function draw(){
@@ -84,7 +97,7 @@ if(game_status == "start"){
    fill(250,0,0);
     stroke(0,0,250);
     strokeWeight(0.5);
-   paddle1Y = mouseY; 
+   paddle1Y = rightWristY; 
    rect(paddle1X,paddle1Y,paddle1,paddle1Height,100);
    
    
@@ -156,10 +169,12 @@ function move(){
    }
   if (ball.x-2.5*ball.r/2< 0){
   if (ball.y >= paddle1Y&& ball.y <= paddle1Y + paddle1Height) {
+    paddle_hits_ball.play();
     ball.dx = -ball.dx+0.5; 
   }
   else{
     pcscore++;
+    paddle_misses_ball.play();
     reset();
     navigator.vibrate(100);
   }
@@ -172,7 +187,7 @@ if(pcscore ==4){
     stroke("white");
     textSize(25)
     text("Game Over!☹☹",width/2,height/2);
-    text("Reload The Page!",width/2,height/2+30)
+    text("Press the blue button to try again!",width/2,height/2+30)
     noLoop();
     pcscore = 0;
 }
